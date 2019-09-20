@@ -21,3 +21,7 @@ Example:
 ```shell script
 $ git clone https://github.com/SabujXi/LibraryManagementSystem-Django.git
 ``` 
+
+--------
+This text is copyrighted to Md. Sabuj Sarker (md.sabuj.sarker@gmail.com) - no part of it can be used/copied without explicit permission from him.
+ 
