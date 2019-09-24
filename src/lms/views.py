@@ -5,4 +5,4 @@ def home(req):
     context = {
 
     }
-    return render(req, "lms/base.html", context=context)
+    return render(req, "lms/home.html", context=context)
