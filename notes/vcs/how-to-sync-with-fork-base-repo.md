@@ -51,7 +51,7 @@ Now to to your working directory to see what happened.
 Magic! `notes` are there.
 
 ## FAQs
-
+what is the difference between `pull` and `fetch` and when do we use `pull` and `fetch`?
 
 --------
 This text is copyrighted to Md. Sabuj Sarker (md.sabuj.sarker@gmail.com) - no part of it can be used/copied without explicit permission from him.
