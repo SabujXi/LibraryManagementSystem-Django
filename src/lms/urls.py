@@ -10,6 +10,7 @@ urlpatterns = [
     path('', home, name='home'),
     path('about.php', about, name='about'),
     path('book-list.aspx', book_list, name='book-list'),
+    path('home.aspx', home, name='home'),
     # testing urls
     path('a', lambda x: HttpResponse('I am a'))
 ]

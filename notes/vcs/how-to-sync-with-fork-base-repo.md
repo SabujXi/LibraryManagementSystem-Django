@@ -53,5 +53,8 @@ Magic! `notes` are there.
 ## FAQs
 what is the difference between `pull` and `fetch` and when do we use `pull` and `fetch`?
 
+
+![this image shows how tag works in template](abc.jpg)
+
 --------
 This text is copyrighted to Md. Sabuj Sarker (md.sabuj.sarker@gmail.com) - no part of it can be used/copied without explicit permission from him.
