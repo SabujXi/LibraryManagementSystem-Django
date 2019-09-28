@@ -3,9 +3,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="{% static 'jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.3.1.slim.min.js' %}"></script>
+    <script src="{% static 'bootstrap-4/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <link rel="stylesheet" href="{% static 'bootstrap-4/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap-4/css/bootstrap.min.css' %}">
+
 
 
     <title>{% block title %} Empty Title  {% endblock title %} </title>
@@ -45,6 +48,5 @@
     {% endblock %}
 </div>
 
-<script src="{% static 'bootstrap-4/js/bootstrap.js' %}"></script>
 </body>
 </html>
