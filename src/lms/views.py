@@ -1,5 +1,8 @@
 from django.shortcuts import render
-from .models import Book
+from .models import (
+    Book,
+    Member,
+)
 
 # Create your views here.
 def home(req):
@@ -20,4 +23,13 @@ def book_list(req):
         'books': books
     }
     return render(req, "lms/book_list.html", context=context)
+
+def member_list(req):
+    members = Member.objects.all()
+
+    context = {
+
+            'members': members
+    }
+    return render (req,"lms/member_list.html",context=context)
 
