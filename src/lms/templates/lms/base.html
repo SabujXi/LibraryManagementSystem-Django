@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="{% static 'bootstrap-4/css/bootstrap.css' %}">
     <link rel="stylesheet" href="{% static 'bootstrap-4/css/bootstrap.min.css' %}">
 
+    {% block fav_icon %} No Icon Detected {% endblock fav_icon %}
+
 
 
     <title>{% block title %} Empty Title  {% endblock title %} </title>
@@ -41,10 +43,10 @@
                     <a class="nav-link" href="{% url 'add-book' %}">Add Book</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+                <form class="form-inline my-2 my-lg-0">
               <input class="form-control mr-sm-2" type="text" placeholder="Search">
               <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-            </form>
+                </form>
         </div>
     </nav>
 </div>
