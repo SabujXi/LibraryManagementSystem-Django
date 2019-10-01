@@ -4,7 +4,8 @@ from .views import (
     home,
     about,
     book_list,
-    member_list
+    member_list,
+addbook,
 )
 
 urlpatterns = [
@@ -13,6 +14,7 @@ urlpatterns = [
     path('book-list.aspx', book_list, name='book-list'),
     path('home.aspx', home, name='home'),
     path('member-list.py',member_list,name='member-list'),
+    path('addbooks', addbook, name='add book'),
     # testing urls
     path('a', lambda x: HttpResponse('I am a'))
 ]

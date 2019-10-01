@@ -47,3 +47,8 @@ def member_list(req):
     }
     return render (req,"lms/member_list.html",context=context)
 
+def addbook(request):
+    context = {
+
+    }
+    return render(request, "lms/add_book.html", context=context)
