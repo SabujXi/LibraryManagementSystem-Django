@@ -4,16 +4,26 @@
 {% block title %} Home of LMS {% endblock title %}
 {% block fav_icon %} <link rel="shortcut icon" href="{% static 'lms/favicon.jpg' %}" /> {% endblock fav_icon %}
 
+{% block logo %}
+  <div class="container">
+    <div class="row py-5 m-auto">
+      <div class="image rounded-circle img-fluid m-auto">
+        <img src="{% static 'lms/lib.jpg' %}" class="rounded-circle img-fluid">
+      </div>
+    </div>
+  </div>
+{% endblock logo %}
 
 {% block body %}
+<section class="slider-section">
 <div class="container">
   <div class="row py-5">
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active dot"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1" class="dot"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2" class="dot"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="3" class="dot"></li>
   </ol>
   <div class="carousel-inner img-fluid">
     <div class="carousel-item active">
@@ -40,4 +50,5 @@
 </div>
   </div>
   </div>
+  </section>
 {% endblock body %}
