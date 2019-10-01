@@ -25,7 +25,21 @@ def book_list(req):
     return render(req, "lms/book_list.html", context=context)
 
 def member_list(req):
-    members = Member.objects.all()
+    members = [
+        {
+            "id": 1,
+            "name": "Shisihr",
+            "e_mail": "shishir@example.com",
+            "bio": "I Am The Boss"
+        },
+        {
+            "id":2,
+            "name":"Taukir",
+            "e_mail": "taukir@example.com",
+            "bio":"I Am Donkey"
+        }
+    ]
+
 
     context = {
 

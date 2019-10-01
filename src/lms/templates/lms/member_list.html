@@ -13,19 +13,20 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Taken Books</th>
-                        <th scope="col">Description</th>
+                        <th scope="col">E-Mail</th>
+                        <th scope="col">Bio</th>
                     </tr>
                 </thead>
                 <tbody>
-                {% for member in members %}
-                    <tr>
-                        <th scope="row">{{ member.id }}</th>
-                        <td>{{ member.name }}</td>
-                        <td>{{ member.token_books }}</td>
-                        <td>{{ member.description }}</td>
-                    </tr>
-                {% endfor %}
+                  {% for member in members %}
+                  <tr>
+                      <td scope="col">{{ member.id }}</td>
+                      <td>{{ member.name }}</td>
+                      <td> {{ member.e_mail }}</td>
+                      <td> {{ member.bio }}</td>
+                  </tr>
+                    {% endfor %}
+
                 </tbody>
             </table>
         </div>
