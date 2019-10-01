@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from .models import (
     Book,
     Member,
@@ -48,7 +49,18 @@ def member_list(req):
     return render (req,"lms/member_list.html",context=context)
 
 def addbook(request):
-    context = {
-
-    }
-    return render(request, "lms/add_book.html", context=context)
+    if request.method == 'GET':
+        context = {
+        }
+        return render(request, "lms/add_book.html", context=context)
+    else:
+        assert request.method == 'POST'
+        # TODO: process the form, validate it, save into db and report to the user - on failure report error.
+        title = request.POST.get('title')
+        author = request.POST.get('author')
+        description = request.POST.get('description')
+        return HttpResponse(f"""
+Title: {title}
+Author: {author}
+Description: {description}
+""")
