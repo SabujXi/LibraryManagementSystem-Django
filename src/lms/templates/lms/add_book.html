@@ -1,0 +1,25 @@
+{% extends 'lms/base.html' %}
+
+
+{% block title %} add books {% endblock %}
+
+
+{% block body %}
+
+<form action="/action_page.php">
+  title:<br>
+  <input type="text" name="title" placeholder="name a title">
+  <br>
+  author:<br>
+  <input type="text" name="author" placeholder="name book's author">
+  <br>
+    description:<br>
+    <input type="text" name="description" placeholder="descriptioon">
+
+
+    <br>
+    <br>
+  <input type="submit" value="Submit">
+</form>
+
+{% endblock %}
