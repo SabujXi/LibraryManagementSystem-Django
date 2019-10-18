@@ -53,6 +53,20 @@
 </div>
 <!-- container 1 -->
 
+<div class="container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+                {{ message }}
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
+
 <div class="container bg-info">
     {% block logo %} Empty Logo {% endblock logo %}
     {% block body %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views import View
+from django.contrib import messages
 
 from .models import (
     Book,
@@ -83,5 +84,5 @@ class AddBookView(View):
         book.author = author
         book.description = description
         book.save()
-
-        return redirect('book-list')
+        messages.add_message(request, messages.INFO, f'Saved successfully with id {book.id}, title {book.title}')
+        return redirect('add-book')
