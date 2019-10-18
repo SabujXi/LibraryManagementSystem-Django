@@ -6,22 +6,23 @@
 
 {% block body %}
 
-<form>
+<form method="post">
+  {% csrf_token %}
   <div class="form-group">
     <br>
 
     <h3>Enter information below to add a book to the Library</h3>
-    <label for="exampleInputEmail1" >title</label>
-    <input type="text" class="form-control" placeholder="title" required minlength="4" maxlength="15">
+    <label>title</label>
+    <input name="title" type="text" class="form-control" placeholder="title" required minlength="4" maxlength="15">
   </div>
   <div class="form-group">
-    <label for="exampleInputPassword1">author</label>
-    <input type="text" class="form-control" placeholder="author name" required>
+    <label>author</label>
+    <input name="author" type="text" class="form-control" placeholder="author name" required>
   </div>
 
     <div class="form-group">
-    <label for="exampleFormControlTextarea1">description</label>
-    <textarea class="form-control" rows="3"></textarea>
+    <label>description</label>
+    <textarea name="description" class="form-control" rows="3"></textarea>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

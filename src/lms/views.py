@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.views import View
+
 from .models import (
     Book,
     Member,
@@ -64,3 +66,22 @@ Title: {title}
 Author: {author}
 Description: {description}
 """)
+
+class AddBookView(View):
+    def get(self, request):
+        context = {
+        }
+        return render(request, "lms/add_book.html", context=context)
+    def post(self, request):
+        # TODO: process the form, validate it, save into db and report to the user - on failure report error.
+        title = request.POST.get('title')
+        author = request.POST.get('author')
+        description = request.POST.get('description')
+        # TODO: validate
+        book = Book()
+        book.title = title
+        book.author = author
+        book.description = description
+        book.save()
+
+        return redirect('book-list')
