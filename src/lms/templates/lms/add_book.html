@@ -6,21 +6,24 @@
 
 {% block body %}
 
-<form method="POST" action="{% url 'add-book' %}">
-  {% csrf_token %}
-  title:<br>
-  <input type="text" name="title" placeholder="name a title">
-  <br>
-  author:<br>
-  <input type="text" name="author" placeholder="name book's author">
-  <br>
-    description:<br>
-  <textarea name="description"></textarea>
-
-
+<form>
+  <div class="form-group">
     <br>
-    <br>
-  <input type="submit" value="Submit">
+
+    <h3>Enter information below to add a book to the Library</h3>
+    <label for="exampleInputEmail1" >title</label>
+    <input type="text" class="form-control" placeholder="title" required minlength="4" maxlength="15">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">author</label>
+    <input type="text" class="form-control" placeholder="author name" required>
+  </div>
+
+    <div class="form-group">
+    <label for="exampleFormControlTextarea1">description</label>
+    <textarea class="form-control" rows="3"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
 {% endblock %}
