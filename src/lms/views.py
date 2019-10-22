@@ -7,6 +7,7 @@ from .models import (
     Book,
     Member,
 )
+from .utils import validate_book_data
 
 # Create your views here.
 def home(req):
@@ -71,18 +72,27 @@ Description: {description}
 class AddBookView(View):
     def get(self, request):
         context = {
+            'errors': {}
         }
         return render(request, "lms/add_book.html", context=context)
+
     def post(self, request):
         # TODO: process the form, validate it, save into db and report to the user - on failure report error.
         title = request.POST.get('title')
         author = request.POST.get('author')
         description = request.POST.get('description')
-        # TODO: validate
-        book = Book()
-        book.title = title
-        book.author = author
-        book.description = description
-        book.save()
-        messages.add_message(request, messages.INFO, f'Saved successfully with id {book.id}, title {book.title}')
-        return redirect('add-book')
+        # TODO: validate - pure python validator
+        errors = validate_book_data(request.POST)
+        if errors:
+            context = {
+                'errors': errors
+            }
+            return render(request, "lms/add_book.html", context=context)
+        else:
+            book = Book()
+            book.title = title
+            book.author = author
+            book.description = description
+            book.save()
+            messages.add_message(request, messages.INFO, f'Saved successfully with id {book.id}, title {book.title}')
+            return redirect('add-book')
