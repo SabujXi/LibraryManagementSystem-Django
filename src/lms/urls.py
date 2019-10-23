@@ -12,10 +12,10 @@ from .views import (
 
 urlpatterns = [
     path('', home, name='home'),
-    path('about.php', about, name='about'),
-    path('book-list.aspx', book_list, name='book-list'),
+    path('about', about, name='about'),
+    path('book-list', book_list, name='book-list'),
     path('home.aspx', home, name='home'),
-    path('member-list.py',member_list,name='member-list'),
+    path('member-list',member_list,name='member-list'),
     # path('addbooks', addbook, name='add-book'),
     path('addbooks', AddBookView.as_view(), name='add-book'),
 ]
