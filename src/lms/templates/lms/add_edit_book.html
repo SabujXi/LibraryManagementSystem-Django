@@ -1,0 +1,35 @@
+{% extends 'lms/base.html' %}
+
+{% load static %}
+{% block title %} Add Books {% endblock %}
+{% block fav_icon %} <link rel="shortcut icon" href="{% static 'lms/favicon.jpg' %}" /> {% endblock fav_icon %}
+
+{% block body %}
+
+<form method="post" action="{% url 'add-edit-book' book_id=book_data.id %}">
+    {% csrf_token %}
+    <input type="hidden" name="book_id" value="{{ book_data.id }}">
+
+    <div class="form-group">
+        <br>
+
+        <h3>Enter information below to add a book to the Library</h3>
+        <label>title</label>
+        <input name="title" type="text" value="{{ book_data.title }}" class="form-control" placeholder="title">
+        {% if errors.title %} <span class="lms-error">{{ errors.title }}</span> {% endif %}
+    </div>
+    <div class="form-group">
+        <label>author</label>
+        <input name="author" type="text" value="{{ book_data.author }}" class="form-control" placeholder="author name">
+        {% if errors.author %} <span class="lms-error">{{ errors.author }}</span> {% endif %}
+    </div>
+
+    <div class="form-group">
+        <label>description</label>
+        <textarea name="description" class="form-control" rows="3">{{ book_data.description }}</textarea>
+        {% if errors.description %} <span class="lms-error">{{ errors.description }}</span> {% endif %}
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}

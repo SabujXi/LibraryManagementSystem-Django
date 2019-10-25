@@ -15,3 +15,9 @@ def validate_book_data(book: dict):
     if errors:
         errors['data'] = book
     return errors
+
+
+def del_values_by_key(d: dict, *args):
+    for arg in args:
+        if arg in d:
+            del d[arg]
