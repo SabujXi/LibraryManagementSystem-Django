@@ -42,6 +42,9 @@
     <div class="row">
         <div class="col-sm-12">
             <h1>Listed Books</h1>
+            <div class="text-right">
+                <a href="{% url 'add-book' %}" <button type="button" class="btn btn-light btn-sm"></button>Add book</a>
+            </div>
 
             <table class="table">
                 <thead>
@@ -50,6 +53,8 @@
                         <th scope="col">Title</th>
                         <th scope="col">Auther</th>
                         <th scope="col">Description</th>
+                        <th scope="col">Edit</th>
+                        <th scope="col">Delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,6 +64,8 @@
                         <td>{{ book.title }}</td>
                         <td>{{ book.author }}</td>
                         <td>{{ book.description }}</td>
+                        <td><a href=""><button type="button" class="btn btn-dark btn-sm">Edit</a></td>
+                        <td><a href=""><button type="button" class="btn btn-dark btn-sm">Delete</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>
