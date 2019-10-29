@@ -10,3 +10,4 @@ from .book import (
 from  .member import (
     member_list
 )
+from .author import author_list

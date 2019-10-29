@@ -1,0 +1,47 @@
+{% extends 'lms/base.html' %}
+{% load static %}
+
+{% block title %} author list {% endblock %}
+
+
+{% block body %}
+
+
+<form method="post" action="{% url 'author-add-update' %}">
+    {% csrf_token %}
+<!--    <input type="hidden" name="book_id" value="{{ book_data.id }}">-->
+
+    <div class="form-group">
+        <br>
+
+        <h3>Enter information below to add a book to the Library</h3>
+        <label>title</label>
+        <input name="title" type="text" value="{{ book_data.title }}" class="form-control" placeholder="title">
+<!--        {% if errors.title %} <span class="lms-error">{{ errors.title }}</span> {% endif %}-->
+
+    </div>
+
+    <div class="form-control">
+        <label>sex</label>
+        <select>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Others">Others</option>
+        </select>
+    </div>
+        <div class="form-group">
+            <label>Birthdate</label>
+            <input class="form-control" type="date" name="bday">
+        </div>
+    <div class="form-group">
+        <label>Deathdate</label>
+        <input class="form-control" type="date" name="dday">
+    </div>
+    <div class="form-group">
+        <label>Bio</label>
+        <textarea name="bio"  cols="30" rows="10" placeholder="Bio"></textarea>
+    </div>
+</form>
+
+{% endblock %}
+

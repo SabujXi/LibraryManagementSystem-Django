@@ -9,7 +9,15 @@ from .views import (
     addbook,
     AddEditBookView,
     delete_book,
+    #author
+
 )
+from .views.author import (
+    author_list,
+    author_delete,
+    AuthorAddUpdate,
+)
+
 
 urlpatterns = [
     path('', home, name='home'),
@@ -20,6 +28,10 @@ urlpatterns = [
     # path('addbooks', addbook, name='add-book'),
     re_path('add_edit_book/(?P<book_id>[0-9]+)?', AddEditBookView.as_view(), name='add-edit-book'),
     path('delete-book/<int:id>', delete_book, name='delete-book'),
+    # author
+    path('author-list', author_list, name= 'author-list'),
+    path('author-edit-update', AuthorAddUpdate.as_view(), name='author-add-update' ),
+    path('author-delete', author_delete, name='author-delete'),
 ]
 
 if settings.DEBUG:
