@@ -32,9 +32,11 @@
                     <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'book-list' %}">Book List</a>
+                    <a class="nav-link" href="{% url 'book-list' %}">Books</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'member-list' %}">Members</a> {# TODO: show this menu conditionally depending on user access level. i.e. librian or member #}
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'about' %}">About</a>
                 </li>
