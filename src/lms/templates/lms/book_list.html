@@ -69,7 +69,7 @@
                         <td>{{ book.author }}</td>
                         <td>{{ book.description }}</td>
                         <td><a href="{% url 'add-edit-book' book_id=book.id %}"><button type="button" class="btn btn-dark btn-sm">Edit</a></td>
-                        <td><a href=""><button type="button" class="btn btn-dark btn-sm">Delete</a></td>
+                        <td><a href="{% url 'delete-book' %}"><button type="button" class="btn btn-dark btn-sm">Delete</a></td>
                     </tr>
                 {% endfor %}
                 </tbody>
