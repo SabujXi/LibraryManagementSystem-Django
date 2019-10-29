@@ -137,18 +137,7 @@ class AddEditBookView(View):
 
 
 def delete_book(request, id):
-    obj = get_object_or_404(Book, id=id)
-    # post request
-    if request.method == "POST":
-        obj.delete()
-        redirect('delete-book')
-        book_data = {
-            'id': _book.id,
-            'title': _book.title,
-            'author': _book.author,
-            'description': _book.description
-        }
-    context={
-    "books": book_data
-    }
-    return render(request, 'lms/delete.html', context)
+    book_obj = get_object_or_404(Book, id=id)
+    book_obj.delete()
+    return redirect('book-list')
+
