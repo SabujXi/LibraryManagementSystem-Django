@@ -1,25 +1,11 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
-from django.views import View
 from django.contrib import messages
+from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views import View
 
-from .models import (
-    Book,
-    Member,
-)
-from .utils import validate_book_data, del_values_by_key
+from lms.models import Book
+from lms.utils import del_values_by_key, validate_book_data
 
-# Create your views here.
-def home(req):
-    context = {
-    }
-    return render(req, "lms/home.html", context=context)
-
-
-def about(req):
-    context = {
-    }
-    return render(req, "lms/about.html", context=context)
 
 def book_list(req):
     books = Book.objects.all()
@@ -29,28 +15,6 @@ def book_list(req):
     }
     return render(req, "lms/book_list.html", context=context)
 
-def member_list(req):
-    members = [
-        {
-            "id": 1,
-            "name": "Shisihr",
-            "e_mail": "shishir@example.com",
-            "bio": "I Am The Boss"
-        },
-        {
-            "id":2,
-            "name":"Taukir",
-            "e_mail": "taukir@example.com",
-            "bio":"I Am Donkey"
-        }
-    ]
-
-
-    context = {
-
-            'members': members
-    }
-    return render (req,"lms/member_list.html",context=context)
 
 def addbook(request):
     if request.method == 'GET':
@@ -68,6 +32,7 @@ Title: {title}
 Author: {author}
 Description: {description}
 """)
+
 
 class AddEditBookView(View):
     template = "lms/add_edit_book.html"
@@ -134,10 +99,7 @@ class AddEditBookView(View):
         return redirect('add-edit-book', book_id=book_id)
 
 
-
-
 def delete_book(request, id):
     book_obj = get_object_or_404(Book, id=id)
     book_obj.delete()
     return redirect('book-list')
-
