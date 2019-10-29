@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.views import View
 from django.contrib import messages
@@ -132,3 +132,23 @@ class AddEditBookView(View):
             book.save()
             messages.add_message(request, messages.INFO, f"{ 'Created' if book_id is None else 'Updated'} successfully with id {book.id}, title {book.title}")
         return redirect('add-edit-book', book_id=book_id)
+
+
+
+
+def delete_book(request, id):
+    obj = get_object_or_404(Book, id=id)
+    # post request
+    if request.method == "POST":
+        obj.delete()
+        redirect('delete-book')
+        book_data = {
+            'id': _book.id,
+            'title': _book.title,
+            'author': _book.author,
+            'description': _book.description
+        }
+    context={
+    "books": book_data
+    }
+    return render(request, 'lms/delete.html', context)

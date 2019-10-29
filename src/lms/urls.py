@@ -7,7 +7,8 @@ from .views import (
     book_list,
     member_list,
     addbook,
-    AddEditBookView
+    AddEditBookView,
+    delete_book,
 )
 
 urlpatterns = [
@@ -18,6 +19,7 @@ urlpatterns = [
     path('member-list',member_list,name='member-list'),
     # path('addbooks', addbook, name='add-book'),
     re_path('add_edit_book/(?P<book_id>[0-9]+)?', AddEditBookView.as_view(), name='add-edit-book'),
+    path('delete-book', delete_book, name='delete-book'),
 ]
 
 if settings.DEBUG:
