@@ -18,11 +18,7 @@ class Member(models.Model):
 
 class Author(models.Model):
     name = models.CharField(max_length=255)
-    sex = models.CharField(max_length=10, choices=(
-        "Male","Male",
-        "Female","Female",
-        "Others","Others"
-    ))
+    gender = models.CharField(max_length=255, choices=[("Male","Male"),("Female","Female"),("Others","Others")])
     birth_date = models.DateField(null=True)
     death_date = models.DateField(null=True)
     bio = models.TextField(null=True)
