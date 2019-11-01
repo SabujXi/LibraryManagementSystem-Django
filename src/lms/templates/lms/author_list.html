@@ -1,0 +1,36 @@
+{% extends 'lms/base.html' %}
+{% load static %}
+{% block title %} Author List {% endblock title %}
+{% block body %}
+
+<div class="row">
+        <div class="col-sm-12">
+            <h1>Listed Authors</h1>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Born On</th>
+                        <th scope="col">Died On</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  {% for author in authors %}
+                  <tr>
+                      <td scope="col">{{ author.id }}</td>
+                      <td>{{ author.name }}</td>
+                      <td> {{ author.gender }}</td>
+                      <td> {{ author.birth_date }}</td>
+                      <td> {{ author.death_date }}</td>
+                  </tr>
+                    {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock body %}

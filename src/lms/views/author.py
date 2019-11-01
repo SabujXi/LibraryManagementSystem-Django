@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django.views import View
-
+from lms.models import Author
 
 
 def author_list(request):
-    template = "lms/author_add_edit.html"
+    template = "lms/author_list.html"
     context = {
-
+        'authors': Author.objects.all()
     }
     return render(request, template, context)
 
