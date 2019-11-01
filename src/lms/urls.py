@@ -17,6 +17,14 @@ from .views.author import (
     author_delete,
     AuthorAddUpdate,
 )
+from .views.auths import (
+    LoginView,
+    SignupView,
+    forget_password,
+
+)
+login = LoginView.as_view()
+signup = SignupView.as_view()
 
 
 urlpatterns = [
@@ -32,6 +40,10 @@ urlpatterns = [
     path('author-list', author_list, name= 'author-list'),
     path('author-edit-update', AuthorAddUpdate.as_view(), name='author-add-update' ),
     path('author-delete', author_delete, name='author-delete'),
+    #auths
+    path('login', login, name="login"),
+    path('signup', signup, name="signup"),
+    path('forget-password', forget_password, name="forget-password")
 ]
 
 if settings.DEBUG:
