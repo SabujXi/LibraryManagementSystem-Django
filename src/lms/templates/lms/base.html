@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{% static 'lms/style.css' %}">
     <link rel="stylesheet" href="{% static 'lms/lms.css' %}">
 
-    {% block fav_icon %} No Icon Detected {% endblock fav_icon %}
+    {% block fav_icon %} {# No Icon Detected #} {% endblock fav_icon %}
 
 
 
@@ -81,9 +81,9 @@
 </div>
 
 <div class="container">
-    {% block logo %} Empty Logo {% endblock logo %}
+    {% block logo %}  {% endblock logo %}
     {% block body %}
-        This block is empty.
+        No content put in the body.
     {% endblock %}
 </div>
 
