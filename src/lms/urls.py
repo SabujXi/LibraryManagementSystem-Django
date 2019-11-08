@@ -26,6 +26,11 @@ from .views.auths import (
 login_view = LoginView.as_view()
 signup_view = SignupView.as_view()
 
+from .views.book_issue import (
+    book_issue_list,
+    book_issue_view,
+    book_return_view,
+)
 
 urlpatterns = [
     path('', home, name='home'),
@@ -44,7 +49,14 @@ urlpatterns = [
     path('login', login_view, name="login"),
     path('logout', logout_view, name="logout"),
     path('signup', signup_view, name="signup"),
-    path('forget-password', forget_password, name="forget-password")
+    path('forget-password', forget_password, name="forget-password"),
+
+    # book issue view
+
+    path('book-issue', book_issue_view, name='book-issue'),
+    path('book-return', book_return_view, name='book-return'),
+    path('book-issue-list', book_issue_list, name='book-issue-list'),
+
 ]
 
 if settings.DEBUG:

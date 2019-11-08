@@ -1,4 +1,5 @@
 from django.db import models
+import datetime
 
 
 # Create your models here.
@@ -24,3 +25,15 @@ class Author(models.Model):
     bio = models.TextField(null=True)
     nationality = models.CharField(max_length=255)
 
+
+
+class BookIssue(models.Model):
+    member = models.ForeignKey(
+        Member,
+        on_delete=models.CASCADE,
+    )
+    book = models.ForeignKey(Book, on_delete=models.CASCADE,)
+    issue_dt = models.DateTimeField(default=datetime.datetime.now(), blank=True)
+    return_dt = models.DateTimeField(default=None, blank=True)
+    issue_cmnt = models.TextField(null=True)
+    return_cmnt = models.TextField(null=True)
