@@ -21,10 +21,10 @@ from .views.auths import (
     LoginView,
     SignupView,
     forget_password,
-
+    logout_view
 )
-login = LoginView.as_view()
-signup = SignupView.as_view()
+login_view = LoginView.as_view()
+signup_view = SignupView.as_view()
 
 
 urlpatterns = [
@@ -41,8 +41,9 @@ urlpatterns = [
     path('author-edit-update', AuthorAddUpdate.as_view(), name='author-add-update' ),
     path('author-delete', author_delete, name='author-delete'),
     #auths
-    path('login', login, name="login"),
-    path('signup', signup, name="signup"),
+    path('login', login_view, name="login"),
+    path('logout', logout_view, name="logout"),
+    path('signup', signup_view, name="signup"),
     path('forget-password', forget_password, name="forget-password")
 ]
 

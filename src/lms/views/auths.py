@@ -58,3 +58,7 @@ def forget_password(request):
 
     }
     return render(request, template, context=context)
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
