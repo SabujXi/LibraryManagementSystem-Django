@@ -6,7 +6,7 @@
 
 {% block body %}
 
-<form method="post" action="{% url 'add-edit-book' book_id=book_data.id %}">
+<form method="post" action="{% url 'add-edit-book' book_id=book_data.id %}" enctype="multipart/form-data">
     {% csrf_token %}
     <input type="hidden" name="book_id" value="{{ book_data.id }}">
 
@@ -17,6 +17,11 @@
         <label>title</label>
         <input name="title" type="text" value="{{ book_data.title }}" class="form-control" placeholder="title">
         {% if errors.title %} <span class="lms-error">{{ errors.title }}</span> {% endif %}
+    </div>
+    <div class="form-group">
+        <label>Put Your Image Here </label>
+        <input name="coverimage" type="file" class="form-control" >
+
     </div>
     <div class="form-group">
         <label>author</label>

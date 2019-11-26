@@ -1,7 +1,11 @@
+import hashlib
+import os
+
 from django.contrib import messages
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
+from django.conf import settings
 
 from lms.models import Book
 from lms.utils import del_values_by_key, validate_book_data
@@ -94,6 +98,18 @@ class AddEditBookView(View):
             book.title = title
             book.author = author
             book.description = description
+            #Handle File
+            cover_img_file = request.FILES.get("coverimage")
+            if cover_img_file:
+                hash_ob = hashlib.new('md5')
+                init_fn = f'{settings.MEDIA_ROOT}/{cover_img_file.name}'
+                with open(init_fn, 'wb') as f:
+                    for chunk in cover_img_file.chunks():
+                        hash_ob.update(chunk)
+                        f.write(chunk)
+                img_path = hash_ob.hexdigest() + '_' + cover_img_file.name
+                os.rename(init_fn, f'{settings.MEDIA_ROOT}/{img_path}')
+                book.coverimagepath = img_path
             book.save()
             messages.add_message(request, messages.INFO, f"{ 'Created' if book_id is None else 'Updated'} successfully with id {book.id}, title {book.title}")
         return redirect('add-edit-book', book_id=book_id)

@@ -134,3 +134,6 @@ STATIC_URL = '/static/'
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+MEDIA_ROOT="D:/PythonDjango/uploaded_files"
+MEDIA_URL="/uploads/"
