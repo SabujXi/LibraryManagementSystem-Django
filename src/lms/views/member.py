@@ -1,7 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 from django.views import View
 
+from lms.models import Member
+from lms.utils import del_values_by_key, validate_book_data
 
+from lms.forms import MemberForm
 
 def member_list(req):
     members = [
@@ -41,63 +45,42 @@ def member_list(req):
 class NewMemberView(View):
     template = 'lms/new_member.html'
 
-    template = "lms/add_edit_book.html"
+    def get(self, request):
+        name = request.session.get('name', '')
+        email = request.session.get('email', '')
+        bio = request.session.get('bio', '')
 
-    def get(self, request, member_id=None):
-        errors = request.session.get('errors', {})
-        # build book_data dict
-        if member_id is None:  # non existing book
-            member_data = {
-                'name': request.session.get('name', ''),
-                'token_books': request.session.get('token_books', ''),
-                'description': request.session.get('description', '')
-            }
-            # remove data from session
-            # del_values_by_key(request.session, 'name', 'token_books', 'description', 'errors')
+        member_form = MemberForm(initial={
+            'name': name,
+            'email': email,
+            'bio': bio
+        })
+        member_form.is_valid()
+        return render(request, self.template, context={'member_form': member_form})
 
-        else: # existing book
-            _member = Member.objects.get(id=member_id)
-            member_data = {
-                'id': _member.id,
-                'token_books': _member.token_books,
-                'description': _book.description
-            }
+    def post(self, request):
+        member_form = MemberForm(request.POST)
+        if member_form.is_valid():
+            name = member_form.cleaned_data['name']
+            email = member_form.cleaned_data.get('email', None)
+            bio = member_form.cleaned_data.get('bio', None)
 
-        context = {
-            'member_data': member_data,
-            'errors': errors
-        }
-        return render(request, self.template, context=context)
-
-    def post(self, request, member_id=None):
-        # determine if the request is for new book or editing existing book.
-        member_id = request.POST.get('member_id', None)
-        if not member_id:  # empty string, None
-            member_id = None
-        if member_id is not None:  # conversion
-            member_id = int(member_id)
-
-        # validate submitted data.
-        # TODO: process the form, validate it, save into db and report to the user - on failure report error.
-        name = request.POST.get('name')
-        token_books = request.POST.get('token_books')
-        description = request.POST.get('description')
-        # TODO: validate - pure python validator
-        errors = validate_book_data(request.POST)
-
-        if errors:
-            request.session['name'] = name
-            request.session['description'] = description
-            request.session['errors'] = errors
-        else:
-            if member_id is None:
-                member = Member()
-            else:
-                member = Member.objects.get(id=member_id)
-
+            member = Member()
             member.name = name
-            memmber.token_books = token_books
-            book.description = description
+            if email:
+                member.email = email
+            if bio:
+                member.bio = bio
             member.save()
-            messages.add_message(request, messages.INFO, f"{ 'Created' if member_id is None else 'Updated'} successfully with id {member.id}, title {member.title}")
-        return redirect('new-member', member_id=member_id)
+            messages.add_message(request, messages.INFO, f"Created member with id {member.id}")
+            del_values_by_key(request.session, 'name', 'email', 'bio')
+        else:
+            name = request.POST.get('name')
+            email = request.POST.get('email', None)
+            bio = request.POST.get('bio', None)
+            request.session['name'] = name
+            request.session['email'] = email
+            request.session['bio'] = bio
+            messages.add_message(request, messages.ERROR, f"Member could not be created")
+
+        return redirect('new-member')

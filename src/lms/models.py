@@ -14,8 +14,8 @@ class Book(models.Model):
 class Member(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
-    token_books = models.CharField(max_length=255)
-    description = models.TextField()
+    email = models.EmailField(max_length=255, null=True)
+    bio = models.TextField(null=True)
 
 
 class Author(models.Model):
