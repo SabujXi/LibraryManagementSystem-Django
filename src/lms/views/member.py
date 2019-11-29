@@ -1,12 +1,17 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.views import View
+from django.contrib.auth.decorators import login_required
+# from django.utils.decorators import method_decorator
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from lms.models import Member
 from lms.utils import del_values_by_key, validate_book_data
 
 from lms.forms import MemberForm
 
+
+@login_required(login_url='login')
 def member_list(req):
     members = [
         {
@@ -42,7 +47,9 @@ def member_list(req):
 #     return render(request, template, context=context)
 #
 
-class NewMemberView(View):
+
+class NewMemberView(LoginRequiredMixin, View):
+    login_url = 'login'
     template = 'lms/new_member.html'
 
     def get(self, request):
