@@ -10,7 +10,7 @@ def book_issue_view(reqeust):
     books = Book.objects.all()
     context = {
         'members': members,
-        'books': books
+        'books': books,
     }
     return render(reqeust, template, context=context)
 
