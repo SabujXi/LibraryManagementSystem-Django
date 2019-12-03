@@ -43,9 +43,25 @@
         <div class="col-sm-12">
             <h1>Listed Books</h1>
 
-            <div class="text-right">
+            <!-- <div class="text-right">
                 <a href="{% url 'add-edit-book' %}" class="btn btn-light btn-sm">Add book</a>
-            </div>
+            </div> -->
+
+            <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown button </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="{% url 'add-edit-book' %}">Add book</a>
+                        <a class="dropdown-item" href="{% url 'book-issue' %}">book issue</a>
+                        <a class="dropdown-item" href="{% url 'book-issue-list' %}">book issue list</a>
+                      </div>
+
+
+                      <style media="screen">
+                          .dropdown {
+                              float: right;
+                          }
+                      </style>
+        </div>
 
 
             <table class="table">
@@ -74,6 +90,7 @@
             </table>
         </div>
     </div>
+
 
 
 
